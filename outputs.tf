@@ -3,8 +3,18 @@ output "thisbit_s3_bucket" {
   value       = aws_s3_bucket.thisbit.bucket
 }
 
+output "bucket_name" {
+  description = "Alias for thisbit_s3_bucket."
+  value       = aws_s3_bucket.thisbit.bucket
+}
+
 output "thisbit_s3_region" {
   description = "AWS region of the S3 bucket."
+  value       = aws_s3_bucket.thisbit.region
+}
+
+output "region" {
+  description = "Alias for thisbit_s3_region."
   value       = aws_s3_bucket.thisbit.region
 }
 
@@ -13,8 +23,19 @@ output "thisbit_access_key_id" {
   value       = var.create_iam_user ? aws_iam_access_key.thisbit_connector[0].id : null
 }
 
+output "access_key_id" {
+  description = "Alias for thisbit_access_key_id."
+  value       = var.create_iam_user ? aws_iam_access_key.thisbit_connector[0].id : null
+}
+
 output "thisbit_secret_access_key" {
   description = "Secret Access Key for the least-privilege Thisbit S3 IAM user (retrieve with: terraform output -raw thisbit_secret_access_key)."
+  value       = var.create_iam_user ? aws_iam_access_key.thisbit_connector[0].secret : null
+  sensitive   = true
+}
+
+output "secret_access_key" {
+  description = "Alias for thisbit_secret_access_key."
   value       = var.create_iam_user ? aws_iam_access_key.thisbit_connector[0].secret : null
   sensitive   = true
 }
